@@ -23,13 +23,15 @@ public class TransferRequestJson {
                 '}';
     }
 
-    public void toTransfer(Transfer transfer) {
+    public Transfer toTransfer(Transfer transfer) {
 
         transfer.setTranAmount( getAmount() );
         transfer.setOtherEmail( getTransferee() );
         Account account = new Account();
         account.setEmail( getEmail() );
         transfer.setAccount( account );
+
+        return transfer;
     }
 
     public String getEmail() {

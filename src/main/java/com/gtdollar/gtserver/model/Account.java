@@ -34,7 +34,7 @@ public class Account implements Cloneable, Serializable {
     private BigDecimal balance;
 
 
-    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = { CascadeType.PERSIST,  CascadeType.REFRESH },fetch = FetchType.EAGER)
     @JoinColumn(name="email")
     private List<Transfer> transferList;
 

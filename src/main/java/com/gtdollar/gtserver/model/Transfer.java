@@ -48,6 +48,16 @@ public class Transfer implements Cloneable, Serializable {
     @JoinColumn(name = "email")
     private Account account;
 
+
+    public Transfer() {
+
+    }
+
+    public Transfer( int id, String otherEmail, String tranType
+                , Date dateTime, BigDecimal balance, BigDecimal tranAmount ) {
+
+    }
+
     /////////////////
 
 
