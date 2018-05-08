@@ -22,7 +22,10 @@ public class AccountDaoImpl extends AbstractDao<Integer, Account> implements Acc
     public void saveAccount(Account account) {
         persist(account);
     }
- 
 
+    public Account updateccount(Account account) {
+        Account rst = (Account) getSession().merge( account );
+        return  rst;
+    }
 
 }

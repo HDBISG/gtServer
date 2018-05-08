@@ -10,16 +10,15 @@ import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity(name="GT_ACCOUNT")
-public class Account {
- 
+public class Account implements Cloneable, Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
- 
     @Size(min=5, max=50)
     @Column(name = "EMAIL", nullable = false)
     private String email;
@@ -34,6 +33,11 @@ public class Account {
     @Column(name = "BALANCE", nullable = false)
     private BigDecimal balance;
 
+
+    @OneToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name="email")
+    private List<Transfer> transferList;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,32 +45,32 @@ public class Account {
 
         Account account = (Account) o;
 
-        return id == account.id;
+        return email != null ? email.equals(account.email) : account.email == null;
 
     }
 
     @Override
     public int hashCode() {
-        return id;
+        return email != null ? email.hashCode() : 0;
     }
 
     @Override
     public String toString() {
         return "Account{" +
-                "id=" + id +
                 ", email='" + email + '\'' +
                 ", createTime=" + createTime +
                 ", balance=" + balance +
                 '}';
     }
 
-    public int getId() {
-        return id;
+    public List<Transfer> getTransferList() {
+        return transferList;
     }
- 
-    public void setId(int id) {
-        this.id = id;
+
+    public void setTransferList(List<Transfer> transferList) {
+        this.transferList = transferList;
     }
+
 
     public String getEmail() {
         return email;
