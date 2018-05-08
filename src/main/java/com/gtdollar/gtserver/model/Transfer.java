@@ -89,7 +89,7 @@ public class Transfer implements Cloneable, Serializable {
     public void setTranType(String tranType) {
         this.tranType = tranType;
     }
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mmzzz",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mmTZD",timezone = "GMT+8")
     public Date getDateTime() {
         return dateTime;
     }

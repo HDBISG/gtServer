@@ -1,5 +1,6 @@
 package com.gtdollar.gtserver.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gtdollar.gtserver.model.Transfer;
 
 import java.math.BigDecimal;
@@ -71,8 +72,13 @@ public class TransferResponseJson {
         this.amount = amount;
     }
 
-    public Date getDatetime() {
-        return datetime;
+    // zzz 2018-05-08T21:32GMT+08:00
+    // Z 2018-05-08T21:32+0800
+    //http://www.java2s.com/Code/Java/Data-Type/ISO8601dateparsingutility.htm
+
+    //@JsonFormat(pattern="yyyy-MM-dd'T'HH:mmZ",timezone = "GMT+8")
+    public String getDatetime() {
+        return Utility.formatDateTime( datetime ) ;
     }
 
     public void setDatetime(Date datetime) {

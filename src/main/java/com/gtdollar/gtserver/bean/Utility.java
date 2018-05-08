@@ -2,7 +2,10 @@ package com.gtdollar.gtserver.bean;
 
 import com.gtdollar.gtserver.model.Transfer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,5 +26,10 @@ public class Utility {
         }
 
         return transferResponseJsonList;
+    }
+    static  DateFormat fmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
+
+    public static String formatDateTime( Date date ) {
+        return fmt.format( date );
     }
 }
