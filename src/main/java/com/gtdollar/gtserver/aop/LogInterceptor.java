@@ -1,6 +1,8 @@
 package com.gtdollar.gtserver.aop;
 
 
+
+import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LogInterceptor {
 
+    private static Logger log = Logger.getLogger( LogInterceptor.class );
+
     public LogInterceptor() {
     }
 
@@ -21,7 +25,7 @@ public class LogInterceptor {
     @Before("selectAll()")
     public void beforeAdvice( JoinPoint joinPoint ) {
 
-        /*System.out.println(  "beforeAdvice() " + joinPoint.getArgs()
+        /*log.info(  "beforeAdvice() " + joinPoint.getArgs()
                 + "  " + joinPoint.getKind()
                 + "  " + joinPoint.getClass()
                 + "  " + joinPoint.getSignature()
@@ -30,7 +34,7 @@ public class LogInterceptor {
                 + "  " + joinPoint.getTarget()
                 + "  " + joinPoint.getThis() );*/
         for( Object obj: joinPoint.getArgs() ) {
-            System.out.println( " " + obj);
+            log.info( " " + obj);
         }
     }
 
@@ -38,7 +42,7 @@ public class LogInterceptor {
     @After("selectAll()")
     public void afterAdvice() {
 
-        System.out.println(  "afterAdvice() " );
+        log.info(  "afterAdvice() " );
     }
 
 

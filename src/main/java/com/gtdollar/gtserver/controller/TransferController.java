@@ -7,6 +7,7 @@ import com.gtdollar.gtserver.model.Account;
 import com.gtdollar.gtserver.model.Transfer;
 import com.gtdollar.gtserver.service.AccountService;
 import com.gtdollar.gtserver.service.TransferService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("/transfer")
 public class TransferController {
- 
+
+    private static Logger log = Logger.getLogger( TransferController.class );
+
     @Autowired
     AccountService accountService;
 
@@ -40,8 +43,6 @@ public class TransferController {
      */
     @RequestMapping(value = { "/transfer" }, method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> create(@RequestBody TransferRequestJson transferRequestJson ) {
-
-        System.out.println( "1: " + transferRequestJson );
 
         Map<String, Object> map = new HashMap<String, Object>();
         try {
@@ -67,20 +68,20 @@ public class TransferController {
     @RequestMapping(value = { "/enquiry" }, method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> findByEmail(@RequestBody TransferRequestJson transferRequestJson ) {
 
-        System.out.println( "1: " + transferRequestJson );
+        log.info( "1: " + transferRequestJson );
         Map<String, Object> map = new HashMap<String, Object>();
         try {
 
             Account findAcount = accountService.findByEmail( transferRequestJson.getEmail() );
 
-            System.out.println( "2: " + findAcount );
+            log.info( "2: " + findAcount );
             if( findAcount == null) {
                 throw new Exception("Can not find account " + transferRequestJson.getEmail() );
             }
             map.put("success", new Boolean(true) );
             map.put("transactions", Utility.toTransferResponseJson( findAcount.getTransferList() ) );
 
-            System.out.println( "3: " + map );
+            log.info( "3: " + map );
 
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.OK);
         } catch ( Exception e ) {

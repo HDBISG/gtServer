@@ -1,5 +1,6 @@
 package com.gtdollar.gtserver.test;
 
+import com.gtdollar.gtserver.controller.TransferController;
 import junit.framework.TestCase;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
@@ -9,6 +10,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -23,10 +25,12 @@ import static org.junit.Assert.assertEquals;
 @FixMethodOrder( MethodSorters.NAME_ASCENDING )
 public class TestGtServer  {
 
+    private static Logger log = Logger.getLogger( TestGtServer.class );
+
     private HttpClient httpClient = null;
     private HttpPost method = null;
 
-    String emailAddress = "name7@email.com";
+    String emailAddress = "name10@email.com";
 
     @Test
     public void test1Create() throws  Exception {

@@ -1,8 +1,10 @@
 package com.gtdollar.gtserver.controller;
 
 
+import com.gtdollar.gtserver.aop.LogInterceptor;
 import com.gtdollar.gtserver.model.Account;
 import com.gtdollar.gtserver.service.AccountService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,8 @@ import java.util.*;
 @Controller
 @RequestMapping("/")
 public class AccountController {
- 
+
+    private static Logger log = Logger.getLogger( AccountController.class );
     @Autowired
     AccountService accountService;
      
@@ -33,7 +36,6 @@ public class AccountController {
     @RequestMapping(value = { "/create" }, method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> create(@RequestBody Account account ) {
 
-        System.out.println( "1: " + account );
 
         Map<String, Object> map = new HashMap<String, Object>();
         try {
@@ -42,7 +44,7 @@ public class AccountController {
 
             accountService.saveAccount(account);
 
-            System.out.println( "2: " + account );
+            log.info( "2: " + account );
             map.put("success", new Boolean(true) );
 
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.OK);
@@ -61,13 +63,11 @@ public class AccountController {
     @RequestMapping(value = { "/enquiry" }, method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> findByEmail(@RequestBody Account account ) {
 
-        System.out.println( "1: " + account );
-
         Map<String, Object> map = new HashMap<String, Object>();
         try {
             Account findAcount = accountService.findByEmail( account.getEmail() );
 
-            System.out.println( "2: " + findAcount );
+            log.info( "2: " + findAcount );
 
             if( findAcount == null ) {
                 throw new Exception("Can not find account " + account.getEmail() );
