@@ -12,6 +12,6 @@ public interface AccountDao {
 
     public void saveAccount(Account account);
 
-    public Account updateccount(Account account);
+    public Account updateCcount(Account account);
     
 }

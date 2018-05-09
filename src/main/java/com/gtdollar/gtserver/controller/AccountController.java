@@ -28,7 +28,6 @@ public class AccountController {
     @Autowired
     MessageSource messageSource;
 
-    public static BigDecimal initBalance = new BigDecimal("10000");
 
     /*
      * This method will provide the medium to add a new Account.
@@ -39,8 +38,6 @@ public class AccountController {
 
         Map<String, Object> map = new HashMap<String, Object>();
         try {
-            account.setCreateTime(new Date());
-            account.setBalance(initBalance);
 
             accountService.saveAccount(account);
 

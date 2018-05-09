@@ -6,6 +6,6 @@ import com.gtdollar.gtserver.model.Transfer;
 
 public interface TransferService {
 
-    public void saveTransfer(Transfer transfer);
+    public void saveTransfer(Transfer transfer) throws Exception;
      
 }

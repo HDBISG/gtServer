@@ -30,7 +30,7 @@ public class TestGtServer  {
     private HttpClient httpClient = null;
     private HttpPost method = null;
 
-    String emailAddress = "name10@email.com";
+    String emailAddress = "name12@email.com";
 
     @Test
     public void test1Create() throws  Exception {
@@ -102,7 +102,7 @@ public class TestGtServer  {
 
         JSONObject JsonObject = new JSONObject();
         JsonObject.put("email", emailAddress );
-        JsonObject.put("transferee", "email1@email.com" );
+        JsonObject.put("transferee", "name1@email.com" );
         JsonObject.put("amount", new Double(20) );
 
         StringEntity stringEntity = new StringEntity(JsonObject.toString());

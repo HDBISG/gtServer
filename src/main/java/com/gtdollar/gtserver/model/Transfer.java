@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity(name="GT_TRANSFER")
-public class Transfer implements Cloneable, Serializable {
+public class Transfer implements Cloneable, Serializable, Comparable<Transfer> {
  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,7 +55,12 @@ public class Transfer implements Cloneable, Serializable {
 
     public Transfer( int id, String otherEmail, String tranType
                 , Date dateTime, BigDecimal balance, BigDecimal tranAmount ) {
-
+        this.id = id;
+        this.otherEmail = otherEmail;
+        this.tranType = tranType;
+        this.dateTime = dateTime;
+        this.balance = balance;
+        this.tranAmount = tranAmount;
     }
 
     /////////////////
@@ -65,6 +70,12 @@ public class Transfer implements Cloneable, Serializable {
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+
+    @Override
+    public int compareTo(Transfer o) {
+        return this.getDateTime().compareTo( o.getDateTime() );
+    }
+
 
     public int getId() {
         return id;
@@ -121,4 +132,5 @@ public class Transfer implements Cloneable, Serializable {
     public void setAccount(Account account) {
         this.account = account;
     }
+
 }
