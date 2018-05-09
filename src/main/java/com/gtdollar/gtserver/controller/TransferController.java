@@ -51,13 +51,14 @@ public class TransferController {
 
             transferService.saveTransfer( transfer );
 
-            map.put("success", "true");
+            map.put("success", new Boolean(true) );
 
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.OK);
 
         } catch ( Exception e ) {
 
             e.printStackTrace();
+            map.put("success", new Boolean(false) );
             map.put("msg", e.getMessage() );
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.INTERNAL_SERVER_ERROR );
         }
@@ -76,7 +77,7 @@ public class TransferController {
             if( findAcount == null) {
                 throw new Exception("Can not find account " + transferRequestJson.getEmail() );
             }
-            map.put("success", "true");
+            map.put("success", new Boolean(true) );
             map.put("transactions", Utility.toTransferResponseJson( findAcount.getTransferList() ) );
 
             System.out.println( "3: " + map );
@@ -85,6 +86,7 @@ public class TransferController {
         } catch ( Exception e ) {
 
             e.printStackTrace();
+            map.put("success", new Boolean(false) );
             map.put("msg", e.getMessage() );
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.INTERNAL_SERVER_ERROR );
         }

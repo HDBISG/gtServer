@@ -43,13 +43,14 @@ public class AccountController {
             accountService.saveAccount(account);
 
             System.out.println( "2: " + account );
-            map.put("success", "true");
+            map.put("success", new Boolean(true) );
 
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.OK);
 
         } catch ( Exception e ) {
 
             e.printStackTrace();
+            map.put("success", new Boolean(false) );
             map.put("msg", e.getMessage() );
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.INTERNAL_SERVER_ERROR );
         }
@@ -71,13 +72,14 @@ public class AccountController {
             if( findAcount == null ) {
                 throw new Exception("Can not find account " + account.getEmail() );
             }
-            map.put("success", "true");
+            map.put("success", new Boolean(true) );
             map.put("balance", findAcount.getBalance() );
 
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.OK);
         } catch ( Exception e ) {
 
             e.printStackTrace();
+            map.put("success", new Boolean( false ) );
             map.put("msg", e.getMessage() );
             return new ResponseEntity<Map<String, Object>>( map, HttpStatus.INTERNAL_SERVER_ERROR );
         }
