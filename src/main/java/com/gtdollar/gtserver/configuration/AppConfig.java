@@ -10,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
  
+/*
 
 @Configuration
 @EnableWebMvc
@@ -31,4 +32,4 @@ public class AppConfig {
         messageSource.setBasename("messages");
         return messageSource;
     }
-}
+}*/
