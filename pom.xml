@@ -93,18 +93,18 @@
     </dependency>
 
     <!-- Joda-Time -->
-    <dependency>
+    <!--<dependency>
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
       <version>${joda-time.version}</version>
-    </dependency>
+    </dependency>-->
 
     <!-- To map JodaTime with database type -->
-    <dependency>
+    <!--<dependency>
       <groupId>org.jadira.usertype</groupId>
       <artifactId>usertype.core</artifactId>
       <version>3.1.0.CR1</version>
-    </dependency>
+    </dependency>-->
 
     <!-- Servlet+JSP+JSTL -->
     <dependency>
